@@ -61,33 +61,34 @@ class DataSet():
         """
         # train, test = self.split_train_test()
         print("Loading {} samples into memory.".format(len(data_info_list)))
-        X, y = [], []
+        x, y = [], []
         for data_file_info in data_info_list:
             sequence = self._get_sequence_from_data_file_info(data_file_info)
-            X.append(sequence)
+            x.append(sequence)
             y.append(self._get_class_one_hot(data_file_info.class_name))
-        return np.array(X), np.array(y)
+        return np.array(x), np.array(y)
 
     def frame_generator(self, batch_size, data_info_list: List[DataFileInfo]):
         print("Creating generator with {} samples." % (len(data_info_list)))
         while 1:
-            X, y = [], []
+            x, y = [], []
             for _ in range(batch_size):
                 sample = random.choice(data_info_list)
                 sequence = self._get_sequence_from_data_file_info(sample)
                 if sequence is None:
                     raise ValueError("Can't find sequence. Did you generate them?")
-                X.append(sequence)
-                y.append(self.g_et_class_one_hot(sample.class_name))
-            yield np.array(X), np.array(y)
+                x.append(sequence)
+                y.append(self._get_class_one_hot(sample.class_name))
+            yield np.array(x), np.array(y)
 
     @staticmethod
     def _get_data_list() -> List[DataFileInfo]:
         data_list = list()
         with open('./data/data_file.csv', 'r') as f:
             reader = csv.reader(f)
-            data = DataFileInfo(list(reader))
-            data_list.append(data)
+            for row in reader:
+                data = DataFileInfo(row)
+                data_list.append(data)
         return data_list
 
     def _get_valid_data_list(self):
@@ -120,7 +121,8 @@ class DataSet():
         return sequence
 
     def _get_sequence_from_image(self, image_file_names):
-        return [process_image(x, self.image_shape) for x in image_file_names]
+        return [process_image(image_file_path=x, target_shape=self.image_shape, gray_scale=True) for x in
+                image_file_names]
 
     @staticmethod
     def _get_image_file_names(data_info: DataFileInfo):

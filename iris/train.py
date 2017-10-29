@@ -12,9 +12,15 @@ def train():
     model = "conv3d"
     class_size_limit = 100  # int, can be 1-101 or None
     seq_length = 40
-    image_shape = (80, 80, 3)
-    input_shape = tuple([seq_length].extend(image_shape))
-    nb_epoch = 1000
+    image_shape = (80, 80, 1)
+    # image_shape = (80, 80, 3)
+
+    input_shape = [seq_length]
+    input_shape.extend(image_shape)
+    input_shape = tuple(input_shape)
+
+    # nb_epoch = 1000
+    nb_epoch = 1
     batch_size = 32
 
     tb = TensorBoard(log_dir="./data/logs")
@@ -51,7 +57,7 @@ def train():
                                         validation_data=val_generator,
                                         validation_steps=10)
     """
-    model_container.model.save("result_c3d.h5")
+    model_container.model.save("result_tmp.h5")
 
 
 def main():

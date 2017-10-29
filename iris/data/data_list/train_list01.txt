@@ -1,6 +1,6 @@
 almond/almond.mp4 1
 baumkuchen/baumkuchen.mp4 2
-heckout/checkout.mp4 3
+checkout/checkout.mp4 3
 movie/movie.mp4 4
 nomiya/nomiya.mp4 5
 plush_doll/plush_doll.mp4 6

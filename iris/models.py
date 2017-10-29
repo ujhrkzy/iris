@@ -10,8 +10,9 @@ __date__ = "2017/10/28"
 
 class LooselyConvolutional3DFactory(object):
 
-    def __init__(self, input_shape):
+    def __init__(self, input_shape, class_size):
         self.input_shape = input_shape
+        self.class_size = class_size
 
     def create_model(self) -> Sequential:
         """
@@ -36,14 +37,15 @@ class LooselyConvolutional3DFactory(object):
         model.add(Dropout(0.5))
         model.add(Dense(1024))
         model.add(Dropout(0.5))
-        model.add(Dense(self.nb_classes, activation='softmax'))
+        model.add(Dense(self.class_size, activation='softmax'))
         return model
 
 
 class Convolutional3DFactory(object):
 
-    def __init__(self, input_shape):
+    def __init__(self, input_shape, class_size):
         self.input_shape = input_shape
+        self.class_size = class_size
 
     def create_model(self) -> Sequential:
         """
@@ -80,7 +82,7 @@ class Convolutional3DFactory(object):
         model.add(Dropout(0.5))
         model.add(Dense(4096, activation='relu', name='fc7'))
         model.add(Dropout(0.5))
-        model.add(Dense(self.nb_classes, activation='softmax'))
+        model.add(Dense(self.class_size, activation='softmax'))
         return model
 
 
@@ -89,7 +91,7 @@ class ModelContainer(object):
     def __init__(self, class_size: int, input_shape: tuple=None, loaded_model: Sequential=None):
         self.class_size = class_size
         if loaded_model is None:
-            self.model = LooselyConvolutional3DFactory(input_shape).create_model()
+            self.model = LooselyConvolutional3DFactory(input_shape, class_size).create_model()
             self._compile_model()
         else:
             self.model = loaded_model

@@ -1,0 +1,10 @@
+1 almond
+2 baumkuchen
+3 checkout
+4 movie
+5 nomiya
+6 plush_doll
+7 sweets
+8 tentoumushi
+9 tropical_fish
+10 uttoshi

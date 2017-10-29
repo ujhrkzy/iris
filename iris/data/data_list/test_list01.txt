@@ -1,0 +1,10 @@
+almond/almond_001.mp4
+baumkuchen/baumkuchen_001.mp4
+checkout/checkout_001.mp4
+movie/movie_001.mp4
+nomiya/nomiya_001.mp4
+plush_doll/plush_doll_001.mp4
+sweets/sweets_001.mp4
+tentoumushi/tentoumushi_001.mp4
+tropical_fish/tropical_fish_001.mp4
+uttoshi/uttoshi_001.mp4

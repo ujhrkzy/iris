@@ -1,0 +1,15 @@
+cython
+gunicorn
+pandas
+skflow
+gevent
+requests
+flask
+sqlalchemy
+flask-sqlalchemy
+flask-migrate
+flask-script
+PyMySQL
+openpyxl
+sqlalchemy-utils
+paho-mqtt

@@ -1,0 +1,2 @@
+-r deploy/requirements.txt
+-r test-require.txt

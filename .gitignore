@@ -32,5 +32,4 @@ UNKNOWN.egg-info
 
 .idea/inspectionProfiles/Project_Default.xml
 
-nlpserver/.vscode/launch.json
-nlpserver/src/main/db/preparation/corpus/excel/*/*.xlsx
+five-video-classification-methods/*

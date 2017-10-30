@@ -3,17 +3,17 @@ from keras.callbacks import TensorBoard, ModelCheckpoint, EarlyStopping, CSVLogg
 from models import ModelContainer
 from data_set import DataSet
 import time
+import configuration
 
 __author__ = "ujihirokazuya"
 __date__ = "2017/10/28"
 
 
 def train():
-    model = "conv3d"
-    class_size_limit = 100  # int, can be 1-101 or None
-    seq_length = 40
-    image_shape = (80, 80, 1)
-    # image_shape = (80, 80, 3)
+    model = configuration.model
+    class_size_limit = configuration.class_size_limit
+    seq_length = configuration.seq_length
+    image_shape = configuration.image_shape
 
     input_shape = [seq_length]
     input_shape.extend(image_shape)
@@ -57,7 +57,7 @@ def train():
                                         validation_data=val_generator,
                                         validation_steps=10)
     """
-    model_container.model.save("result_tmp.h5")
+    model_container.model.save(configuration.model_file_name)
 
 
 def main():

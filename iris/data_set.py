@@ -24,7 +24,7 @@ class DataFileInfo(object):
 
 class DataSet():
 
-    def __init__(self, seq_length: int=40, class_size_limit=None, image_shape=(224, 224, 3)):
+    def __init__(self, seq_length: int, class_size_limit=None, image_shape=(224, 224, 3)):
         """
 
         :param seq_length: the number of frames to consider

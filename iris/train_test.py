@@ -7,11 +7,16 @@ import configuration
 __author__ = "ujihirokazuya"
 __date__ = "2017/10/28"
 
+import tensorflow as tf
+
+__author__ = "ujihirokazuya"
+__date__ = "2017/11/03"
+
 
 def train():
     class_size_limit = configuration.class_size_limit
     seq_length = configuration.seq_length
-    image_shape = configuration.image_shape
+    image_shape = configuration.image_shape_and_color
 
     data_set = DataSet(seq_length=seq_length, class_size_limit=class_size_limit, image_shape=image_shape)
     train_data_file_list, test_data_file_list = data_set.split_train_test()
@@ -23,7 +28,7 @@ def train():
     # loss_and_metrics = model.evaluate(X_test, y_test)
     # print("\nloss:{} accuracy:{}".format(loss_and_metrics[0],loss_and_metrics[1]))
     # x_test = x_test[0]
-    x_test = x_test[9]
+    x_test = x_test[5]
     print(x_test.shape)
     x_test = x_test[np.newaxis, :, :, :, :]
     print(x_test.shape)

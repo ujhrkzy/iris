@@ -13,7 +13,7 @@ def train():
     model = configuration.model
     class_size_limit = configuration.class_size_limit
     seq_length = configuration.seq_length
-    image_shape = configuration.image_shape
+    image_shape = configuration.image_shape_and_color
 
     input_shape = [seq_length]
     input_shape.extend(image_shape)

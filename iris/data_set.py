@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 import csv
-import numpy as np
-import random
 import glob
-import operator
-from processor import process_image
-from keras.utils import np_utils
+import random
 from typing import List
+
+import numpy as np
+from keras.utils import np_utils
+
+from processor import process_image
 
 __author__ = "ujihirokazuya"
 __date__ = "2017/10/28"
@@ -116,7 +117,7 @@ class DataSet():
 
     def _get_sequence_from_data_file_info(self, data_file_info: DataFileInfo):
         image_file_names = self._get_image_file_names(data_file_info)
-        image_file_names = self._rescale_list(image_file_names, self.seq_length)
+        image_file_names = self._reduce_frame_size(image_file_names, self.seq_length)
         sequence = self._get_sequence_from_image(image_file_names)
         return sequence
 
@@ -137,28 +138,8 @@ class DataSet():
         return parts[-1].replace('.jpg', '')
 
     @staticmethod
-    def _rescale_list(input_list, size):
+    def _reduce_frame_size(input_list, size):
         assert len(input_list) >= size
         skip = len(input_list) // size
         output = [input_list[i] for i in range(0, len(input_list), skip)]
         return output[:size]
-
-    def print_class_from_prediction(self, predictions, nb_to_return=5):
-        """Given a prediction, print the top classes."""
-        # Get the prediction for each label.
-        label_predictions = {}
-        for i, label in enumerate(self.class_names):
-            label_predictions[label] = predictions[i]
-
-        # Now sort them.
-        sorted_lps = sorted(
-            label_predictions.items(),
-            key=operator.itemgetter(1),
-            reverse=True
-        )
-
-        # And return the top N.
-        for i, class_prediction in enumerate(sorted_lps):
-            if i > nb_to_return - 1 or class_prediction[1] == 0.0:
-                break
-            print("{}: {}".format(class_prediction[0], class_prediction[1]))

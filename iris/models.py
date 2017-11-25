@@ -91,7 +91,8 @@ class ModelContainer(object):
     def __init__(self, class_size: int, input_shape: tuple=None, loaded_model: Sequential=None):
         self.class_size = class_size
         if loaded_model is None:
-            self.model = LooselyConvolutional3DFactory(input_shape, class_size).create_model()
+            # self.model = LooselyConvolutional3DFactory(input_shape, class_size).create_model()
+            self.model = Convolutional3DFactory(input_shape, class_size).create_model()
             self._compile_model()
         else:
             self.model = loaded_model

@@ -51,7 +51,7 @@ class Demo(object):
         print("w:{}".format(self.video_capture.get(cv2.CAP_PROP_FRAME_WIDTH)))
         print("h:{}".format(self.video_capture.get(cv2.CAP_PROP_FRAME_HEIGHT)))
         is_valid = False
-        group_count = 2
+        group_count = 1
         title = "almond"
         group_format = "{0:03d}"
         sub_group_format = "{0:04d}"
